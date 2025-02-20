@@ -1,0 +1,10 @@
+.custom-modal {
+    max-height: 75vh;
+    width: 100%;
+    min-width: 375px;
+}
+
+/* .full-image img {
+    max-width: 100%;
+    height: auto;
+} */

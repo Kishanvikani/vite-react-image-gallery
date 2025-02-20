@@ -1,0 +1,35 @@
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trigger-div {
+    height: 1px;
+}
+
+.grid-container {
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+    padding-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1600px) {
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
