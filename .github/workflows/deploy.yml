@@ -1,0 +1,42 @@
+name: Deploy Vite React to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Change this to your default branch, if different
+
+permissions:
+  contents: write  # Required to deploy to gh-pages branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build Project
+        env:
+          #VITE_API_ACCESS_KEY: ${{ secrets.VITE_API_ACCESS_KEY }}  # If you have any secrets like API keys
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+          VITE_ACCESS_KEY: ${{ secrets.VITE_ACCESS_KEY }}
+        run: yarn build  # Using Yarn to build the project
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # The branch where GitHub Pages will serve the site
+          folder: dist      # The folder containing the built project (from `yarn build`)
+
+
+
