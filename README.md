@@ -2,6 +2,8 @@
 
 This project is an image gallery application built with React, Redux, and TypeScript. It allows users to search for images, view image details, and interact with the gallery.
 
+Visit Site - https://kishanvikani.github.io/vite-react-image-gallery/
+
 ## Steps to Run on Local
 
 Follow these steps to set up and run the project locally:

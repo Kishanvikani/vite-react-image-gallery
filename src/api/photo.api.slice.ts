@@ -2,6 +2,17 @@ import { API_ENDPOINTS } from ".././constants";
 import { Photo } from "../models/Photo";
 import { rootApiSlice } from "../redux/root.api.slice";
 
+const getRequiredData = (photo: Photo) => ({
+    id: photo.id,
+    alt_description: photo.alt_description,
+    urls: {
+        regular: photo.urls.regular,
+    },
+    user: photo.user,
+    created_at: photo.created_at,
+    likes: photo.likes
+})
+
 export const photoApiSlice = rootApiSlice
     .enhanceEndpoints({ addTagTypes: ['PHOTO'] })
     .injectEndpoints({
@@ -15,37 +26,13 @@ export const photoApiSlice = rootApiSlice
                         per_page: 20
                     }
                 }),
-                transformResponse: (response: { results: Photo[] }) => response.results.map((photo) => {
-                    return {
-                        id: photo.id,
-                        alt_description: photo.alt_description,
-                        urls: {
-                            small: photo.urls.small + 'h=200',
-                            regular: photo.urls.regular,
-                        },
-                        user: photo.user,
-                        created_at: photo.created_at,
-                        likes: photo.likes
-                    }
-                }),
+                transformResponse: (response: { results: Photo[] }) => response.results.map(getRequiredData),
             }),
             getImageDetails: build.query<Photo, string>({
                 query: (id) => ({
                     url: `${API_ENDPOINTS.getPhotoDetails}/${id}`,
                 }),
-                transformResponse: (response: Photo) => {
-                    return {
-                        id: response.id,
-                        alt_description: response.alt_description,
-                        urls: {
-                            small: response.urls.small + 'h=200',
-                            regular: response.urls.regular,
-                        },
-                        user: response.user,
-                        created_at: response.created_at,
-                        likes: response.likes
-                    }
-                }
+                transformResponse: (response: Photo) => getRequiredData(response),
             }),
         }),
         overrideExisting: false

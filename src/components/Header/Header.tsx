@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './style.css';
 
 export const Header = () => {
     const text = "PhotoFindX – Search & discover breathtaking shots";

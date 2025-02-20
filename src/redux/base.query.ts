@@ -11,7 +11,6 @@ export const axiosBaseQuery = ({ baseUrl }: { baseUrl: string } = { baseUrl: "" 
     withCredentials?: boolean,
 }> => async ({ url = "", method = 'GET', data, params, responseType, withCredentials }) => {
     try {
-        // Check for token here if not then throw some error or feedback
         const result = await axios({
             url: baseUrl + url || url,
             method,
@@ -23,7 +22,6 @@ export const axiosBaseQuery = ({ baseUrl }: { baseUrl: string } = { baseUrl: "" 
             responseType,
             withCredentials
         })
-        console.log(result)
         return { data: result.data }
     } catch (err) {
         const error = err as AxiosError

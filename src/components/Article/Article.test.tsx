@@ -8,7 +8,6 @@ const mockPhoto: Photo = {
     id: '1',
     urls: {
         regular: 'https://example.com/photo.jpg',
-        small: 'https://example.com/photo.jpg',
     },
     user: {
         username: 'Test_User',
