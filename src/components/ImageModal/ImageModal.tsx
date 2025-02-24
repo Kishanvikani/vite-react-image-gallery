@@ -15,7 +15,7 @@ export const ImageModal = ({ open, onClose, imageId = "" }: ImageModalProps) => 
     const { data: image, isFetching } = useGetImageDetailsQuery(imageId, { skip: !imageId });
 
     return (
-        <Modal open={open} onClose={onClose}>
+        <Modal open={open} onClose={onClose} showCloseIcon={false} center>
             <div className="custom-modal">
                 <Loader isLoading={isFetching}>
                     <article className='full-image'>
